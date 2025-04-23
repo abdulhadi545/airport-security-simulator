@@ -80,6 +80,14 @@ export const translations: Record<string, Translation> = {
     en: 'Top',
     ar: 'أعلى'
   },
+  'status.noBlacklist': {
+    en: 'No blacklisted passports',
+    ar: 'لا توجد جوازات سفر في القائمة السوداء'
+  },
+  'status.noLogs': {
+    en: 'No logs yet',
+    ar: 'لا توجد سجلات بعد'
+  },
 
   // Stats translations
   'stats.totalPassengers': {

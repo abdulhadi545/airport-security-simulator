@@ -1,8 +1,9 @@
 
 import React, { useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { SimulationLog } from '@/utils/simulationUtils';
+import { getTranslation } from '../utils/translations';
+import { Logs } from 'lucide-react';
 
 interface LogPanelProps {
   logs: SimulationLog[];
@@ -36,7 +37,10 @@ const LogPanel: React.FC<LogPanelProps> = ({ logs }) => {
     <Card className="h-full">
       <CardHeader className="bg-gray-800 text-white">
         <CardTitle className="flex items-center text-base font-semibold">
-          <span>Log Panel</span>
+          <span className="flex items-center">
+            <Logs className="h-4 w-4 mr-2" />
+            {getTranslation('panel.logs')}
+          </span>
           <span className="ml-auto bg-white text-gray-800 px-2 py-0.5 rounded-full text-xs">
             {logs.length}
           </span>
@@ -64,7 +68,7 @@ const LogPanel: React.FC<LogPanelProps> = ({ logs }) => {
               ))
             ) : (
               <div className="p-6 text-center text-gray-500">
-                No logs yet
+                {getTranslation('status.noLogs')}
               </div>
             )}
           </div>

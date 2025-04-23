@@ -2,6 +2,8 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getTranslation } from '../utils/translations';
+import { Ban } from 'lucide-react';
 
 interface LinkedListPanelProps {
   blacklist: string[];
@@ -13,7 +15,10 @@ const LinkedListPanel: React.FC<LinkedListPanelProps> = ({ blacklist, currentChe
     <Card className="h-full">
       <CardHeader className="bg-security-alert text-white">
         <CardTitle className="flex items-center text-base font-semibold">
-          <span>Blacklist (Linked List)</span>
+          <span className="flex items-center">
+            <Ban className="h-4 w-4 mr-2" />
+            {getTranslation('panel.blacklist')}
+          </span>
           <span className="ml-auto bg-white text-security-alert px-2 py-0.5 rounded-full text-xs">
             {blacklist.length}
           </span>
@@ -35,7 +40,7 @@ const LinkedListPanel: React.FC<LinkedListPanelProps> = ({ blacklist, currentChe
                       <span className="text-sm font-medium">{passport}</span>
                       {currentChecking === passport && (
                         <span className="ml-2 text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded">
-                          Checking
+                          {getTranslation('status.checking')}
                         </span>
                       )}
                     </div>
@@ -47,7 +52,7 @@ const LinkedListPanel: React.FC<LinkedListPanelProps> = ({ blacklist, currentChe
               ))
             ) : (
               <div className="p-6 text-center text-gray-500">
-                No blacklisted passports
+                {getTranslation('status.noBlacklist')}
               </div>
             )}
           </div>
