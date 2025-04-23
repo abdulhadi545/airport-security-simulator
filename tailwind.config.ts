@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Security themed colors
+				security: {
+					primary: '#1a365d', // Dark blue
+					secondary: '#2c5282', // Medium blue
+					accent: '#3182ce', // Light blue
+					alert: '#e53e3e', // Alert red
+					success: '#38a169', // Success green
+					warning: '#d69e2e', // Warning yellow
+					muted: '#718096', // Muted gray
+					bg: '#f7fafc', // Light background
 				}
 			},
 			borderRadius: {
@@ -84,11 +96,16 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-red': {
+					'0%, 100%': { backgroundColor: 'rgba(229, 62, 62, 0.25)' },
+					'50%': { backgroundColor: 'rgba(229, 62, 62, 0.5)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-red': 'pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 			}
 		}
 	},
