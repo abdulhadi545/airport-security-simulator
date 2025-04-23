@@ -1,73 +1,75 @@
-# Welcome to your Lovable project
 
-## Project info
+# Airport Baggage Security Simulator
 
-**URL**: https://lovable.dev/projects/f1b1ecf8-01af-4ef2-ab85-a41786afcc31
+Interactive web application modeling airport security checkpoints with data structures and real-time simulation.
 
-## How can I edit this code?
+## Project Overview
 
-There are several ways of editing your application.
+This application simulates the process of baggage screening at an airport security checkpoint, complete with:
 
-**Use Lovable**
+- Passenger queue management using FIFO (First In, First Out)
+- Baggage scanning using a LIFO (Last In, First Out) stack
+- Blacklist checking using a Linked List
+- Real-time visualization of the security screening process
+- Comprehensive logging and reporting
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f1b1ecf8-01af-4ef2-ab85-a41786afcc31) and start prompting.
+## Key Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Dynamic Passenger Queue**: Visualize passengers waiting to be processed
+- **Interactive Baggage Scanning**: Item-by-item scanning with danger detection
+- **Blacklist Checking**: Real-time passport verification against blacklist
+- **Live Log Updates**: Track system events and alerts
+- **Statistics Tracking**: Monitor security metrics and performance
+- **CSV Report Export**: Export simulation results for analysis
 
-**Use your preferred IDE**
+## Data Structures Implemented
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Queue (FIFO)**: For passenger processing order
+- **Stack (LIFO)**: For baggage item scanning
+- **Linked List**: For blacklist lookup and verification
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Technologies Used
 
-Follow these steps:
+- React + TypeScript for the frontend
+- Tailwind CSS for styling
+- Framer Motion for animations
+- Shadcn/UI components
+- UUID for unique identifiers
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## How to Use the Simulator
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. **Load Sample Data**: Click "Load Data" to populate the simulation with 30 random passengers
+2. **Add Passengers**: Use "New Passenger" to add individual passengers
+3. **Start Simulation**: Click "Start Simulation" to process the next passenger in queue
+4. **Monitor Logs**: Watch real-time security logs during processing
+5. **Export Reports**: Generate CSV reports with simulation statistics
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Simulation Flow
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1. Passenger is taken from the queue
+2. Passport is checked against the blacklist
+3. If blacklisted, an alert is generated
+4. If not blacklisted, baggage scanning begins
+5. Each item in the baggage is scanned for dangerous items
+6. Alerts are generated for any dangerous items found
+7. Passenger processing completes with appropriate status
 
-**Edit a file directly in GitHub**
+## Project Structure
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `src/components/`: UI components for the application
+- `src/utils/`: Utility functions and data structure implementations
+- `src/models/`: TypeScript interfaces and data models
+- `src/pages/`: Application pages and routing
 
-**Use GitHub Codespaces**
+## Future Enhancements
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Dark mode support
+- Additional security checkpoint stations
+- Machine learning for threat detection
+- Multi-language support
+- Mobile responsiveness improvements
 
-## What technologies are used for this project?
+## License
 
-This project is built with:
+MIT License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/f1b1ecf8-01af-4ef2-ab85-a41786afcc31) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)

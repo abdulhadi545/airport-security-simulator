@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,6 +90,41 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+}
+
+/* Security themed custom classes */
+@layer components {
+  .security-panel {
+    @apply bg-white dark:bg-gray-800 border border-security-border dark:border-gray-700 rounded-lg shadow-md p-4 transition-all duration-300;
+  }
+  
+  .security-panel-header {
+    @apply text-lg font-bold text-security-primary dark:text-blue-300 mb-2 flex items-center;
+  }
+  
+  .security-icon {
+    @apply mr-2 text-security-accent dark:text-blue-400;
+  }
+  
+  .security-alert {
+    @apply bg-security-alert bg-opacity-10 text-security-alert border-l-4 border-security-alert p-2 rounded;
+  }
+  
+  .security-success {
+    @apply bg-security-success bg-opacity-10 text-security-success border-l-4 border-security-success p-2 rounded;
+  }
+  
+  .security-scanner {
+    @apply absolute top-0 left-0 w-full h-2 bg-blue-500 bg-opacity-50 animate-scanner;
+  }
+  
+  .security-item-safe {
+    @apply bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border-l-4 border-green-500;
+  }
+  
+  .security-item-danger {
+    @apply bg-red-50 dark:bg-red-900 dark:bg-opacity-20 border-l-4 border-red-500 animate-pulse-red;
   }
 }

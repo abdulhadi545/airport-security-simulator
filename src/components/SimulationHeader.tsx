@@ -1,21 +1,52 @@
 
 import React from 'react';
-import { Shield } from "lucide-react";
+import { Shield, AlertTriangle, Plane } from "lucide-react";
+import { motion } from "framer-motion";
 
 const SimulationHeader: React.FC = () => {
   return (
-    <div className="flex items-center justify-between mb-4 bg-security-primary text-white p-4 rounded-lg">
+    <motion.div 
+      className="flex items-center justify-between mb-4 bg-security-primary text-white p-4 rounded-lg shadow-lg"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex items-center space-x-3">
-        <Shield className="h-8 w-8" />
+        <motion.div
+          animate={{ rotate: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+        >
+          <Shield className="h-8 w-8 text-white" />
+        </motion.div>
         <div>
           <h1 className="text-xl font-bold">Airport Baggage Security Simulator</h1>
           <p className="text-sm opacity-80">Interactive simulation of airport security checkpoint</p>
         </div>
       </div>
-      <div className="text-sm bg-white text-security-primary px-3 py-1 rounded-full font-medium">
-        Live Simulation
+      <div className="flex items-center">
+        <motion.div 
+          className="text-sm bg-white text-security-primary px-3 py-1 rounded-full font-medium mr-2 flex items-center"
+          animate={{ 
+            scale: [1, 1.05, 1],
+            boxShadow: [
+              "0px 0px 0px rgba(0,0,0,0)",
+              "0px 0px 8px rgba(255,255,255,0.5)",
+              "0px 0px 0px rgba(0,0,0,0)"
+            ]
+          }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <span className="mr-1">Live Simulation</span>
+          <Plane className="h-3 w-3" />
+        </motion.div>
+        <motion.div
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <AlertTriangle className="h-5 w-5 text-security-warning" />
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

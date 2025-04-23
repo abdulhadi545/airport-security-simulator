@@ -63,7 +63,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Security themed colors
+				// Security themed colors - Enhanced
 				security: {
 					primary: '#1a365d', // Dark blue
 					secondary: '#2c5282', // Medium blue
@@ -71,8 +71,12 @@ export default {
 					alert: '#e53e3e', // Alert red
 					success: '#38a169', // Success green
 					warning: '#d69e2e', // Warning yellow
+					danger: '#c53030', // Danger red
+					info: '#4299e1', // Info blue
 					muted: '#718096', // Muted gray
 					bg: '#f7fafc', // Light background
+					highlight: '#ebf8ff', // Highlight blue
+					border: '#e2e8f0', // Border gray
 				}
 			},
 			borderRadius: {
@@ -100,12 +104,23 @@ export default {
 				'pulse-red': {
 					'0%, 100%': { backgroundColor: 'rgba(229, 62, 62, 0.25)' },
 					'50%': { backgroundColor: 'rgba(229, 62, 62, 0.5)' },
+				},
+				'scanner': {
+					'0%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(100%)' },
+					'100%': { transform: 'translateY(0)' },
+				},
+				'blink': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-red': 'pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'scanner': 'scanner 3s ease-in-out infinite',
+				'blink': 'blink 1s ease-in-out infinite',
 			}
 		}
 	},
