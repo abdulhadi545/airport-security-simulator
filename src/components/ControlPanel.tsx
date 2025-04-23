@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SimulationStats } from '@/utils/simulationUtils';
 import { Separator } from "@/components/ui/separator";
+import { getTranslation } from '../utils/translations';
 
 interface ControlPanelProps {
   onLoadData: () => void;
@@ -25,7 +26,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   return (
     <Card className="h-full">
       <CardHeader className="bg-security-primary text-white">
-        <CardTitle className="text-base font-semibold">Control Panel</CardTitle>
+        <CardTitle className="text-base font-semibold">{getTranslation('panel.controls')}</CardTitle>
       </CardHeader>
       <CardContent className="p-4 flex flex-col gap-3">
         <div className="grid grid-cols-2 gap-3">
@@ -35,7 +36,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             disabled={simulationInProgress}
             className="border-security-primary text-security-primary hover:bg-security-primary hover:text-white"
           >
-            Load Data
+            {getTranslation('button.loadData')}
           </Button>
           <Button 
             variant="outline" 
@@ -43,7 +44,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             disabled={simulationInProgress}
             className="border-security-secondary text-security-secondary hover:bg-security-secondary hover:text-white"
           >
-            New Passenger
+            {getTranslation('button.newPassenger')}
           </Button>
         </div>
         
@@ -53,7 +54,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           disabled={simulationInProgress}
           className="bg-security-accent hover:bg-security-secondary text-white"
         >
-          Start Simulation
+          {getTranslation('button.startSimulation')}
         </Button>
         
         <Separator className="my-2" />
@@ -61,19 +62,19 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         <div className="text-sm font-medium">Statistics</div>
         <div className="grid grid-cols-2 gap-2 text-sm">
           <div className="bg-gray-50 p-2 rounded">
-            <div className="text-xs text-gray-500">Total Passengers</div>
+            <div className="text-xs text-gray-500">{getTranslation('stats.totalPassengers')}</div>
             <div className="font-semibold">{stats.totalPassengers}</div>
           </div>
           <div className="bg-gray-50 p-2 rounded">
-            <div className="text-xs text-gray-500">Alarmed Passengers</div>
+            <div className="text-xs text-gray-500">{getTranslation('stats.alarmedPassengers')}</div>
             <div className="font-semibold text-security-alert">{stats.alarmedPassengers}</div>
           </div>
           <div className="bg-gray-50 p-2 rounded">
-            <div className="text-xs text-gray-500">Cleared Passengers</div>
+            <div className="text-xs text-gray-500">{getTranslation('stats.clearedPassengers')}</div>
             <div className="font-semibold text-security-success">{stats.clearedPassengers}</div>
           </div>
           <div className="bg-gray-50 p-2 rounded">
-            <div className="text-xs text-gray-500">Blacklist Matches</div>
+            <div className="text-xs text-gray-500">{getTranslation('stats.blacklistMatches')}</div>
             <div className="font-semibold text-security-warning">{stats.blacklistMatches}</div>
           </div>
         </div>
@@ -83,7 +84,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           onClick={onExportReport}
           className="border-gray-400 text-gray-600 hover:bg-gray-200 hover:text-gray-800 mt-2"
         >
-          Export Report
+          {getTranslation('button.exportReport')}
         </Button>
       </CardContent>
     </Card>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Shield, AlertTriangle, Plane } from "lucide-react";
 import { motion } from "framer-motion";
+import { getTranslation } from '../utils/translations';
 
 const SimulationHeader: React.FC = () => {
   return (
@@ -19,8 +20,8 @@ const SimulationHeader: React.FC = () => {
           <Shield className="h-8 w-8 text-white" />
         </motion.div>
         <div>
-          <h1 className="text-xl font-bold">Airport Baggage Security Simulator</h1>
-          <p className="text-sm opacity-80">Interactive simulation of airport security checkpoint</p>
+          <h1 className="text-xl font-bold">{getTranslation('simulator.title')}</h1>
+          <p className="text-sm opacity-80">{getTranslation('simulator.description')}</p>
         </div>
       </div>
       <div className="flex items-center">
@@ -36,7 +37,7 @@ const SimulationHeader: React.FC = () => {
           }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          <span className="mr-1">Live Simulation</span>
+          <span className="mr-1">{getTranslation('simulator.liveStatus')}</span>
           <Plane className="h-3 w-3" />
         </motion.div>
         <motion.div

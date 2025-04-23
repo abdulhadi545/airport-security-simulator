@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Passenger } from '@/models/passenger';
+import { getTranslation } from '../utils/translations';
 
 interface QueuePanelProps {
   passengers: Passenger[];
@@ -13,7 +14,7 @@ const QueuePanel: React.FC<QueuePanelProps> = ({ passengers }) => {
     <Card className="h-full">
       <CardHeader className="bg-security-primary text-white">
         <CardTitle className="flex items-center text-base font-semibold">
-          <span>Queue Panel (FIFO)</span>
+          <span>{getTranslation('panel.queue')}</span>
           <span className="ml-auto bg-white text-security-primary px-2 py-0.5 rounded-full text-xs">
             {passengers.length}
           </span>
@@ -41,14 +42,14 @@ const QueuePanel: React.FC<QueuePanelProps> = ({ passengers }) => {
                   </div>
                   {index === 0 && (
                     <div className="text-xs bg-blue-100 px-2 py-1 rounded text-security-secondary">
-                      Next
+                      {getTranslation('status.next')}
                     </div>
                   )}
                 </div>
               ))
             ) : (
               <div className="p-6 text-center text-gray-500">
-                No passengers in queue
+                No passengers in queue / لا يوجد مسافرين في الطابور
               </div>
             )}
           </div>
