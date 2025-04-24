@@ -26,14 +26,16 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
     <Card className="h-full">
       <CardHeader className="bg-security-secondary text-white">
         <CardTitle className="flex items-center text-base font-semibold">
-          <span>{getTranslation('panel.stack')}</span>
+          <span>
+            {getTranslation('panel.stack', 'en')} / {getTranslation('panel.stack', 'ar')}
+          </span>
           <span className="ml-auto bg-white text-security-secondary px-2 py-0.5 rounded-full text-xs">
             {items.length}
           </span>
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <ScrollArea className="h-[calc(100%-2rem)] max-h-[350px]">
+        <ScrollArea className="h-[calc(100vh-12rem)] max-h-[350px]">
           <div className="divide-y">
             {items.length > 0 ? (
               [...items].reverse().map((item, reversedIndex) => {
@@ -51,7 +53,7 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
                     <div className="flex-1">
                       <p className="font-medium">{item.name}</p>
                       <div className="text-xs text-gray-500">
-                        {getTranslation('ui.itemNumber')}{actualIndex + 1}
+                        {getTranslation('ui.itemNumber', 'en')} / {getTranslation('ui.itemNumber', 'ar')} {actualIndex + 1}
                       </div>
                     </div>
                     
@@ -61,13 +63,16 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
                           ? 'bg-red-100 text-red-800' 
                           : 'bg-green-100 text-green-800'
                       }`}>
-                        {isDangerous ? getTranslation('status.dangerous') : getTranslation('status.safe')}
+                        {isDangerous 
+                          ? `${getTranslation('status.dangerous', 'en')} / ${getTranslation('status.dangerous', 'ar')}`
+                          : `${getTranslation('status.safe', 'en')} / ${getTranslation('status.safe', 'ar')}`
+                        }
                       </div>
                     )}
                     
                     {actualIndex === items.length - 1 && !scanning && (
                       <div className="text-xs bg-blue-100 px-2 py-1 rounded text-security-secondary">
-                        {getTranslation('status.top')}
+                        {getTranslation('status.top', 'en')} / {getTranslation('status.top', 'ar')}
                       </div>
                     )}
                   </div>
@@ -75,7 +80,7 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
               })
             ) : (
               <div className="p-6 text-center text-gray-500">
-                {getTranslation('status.noItems')}
+                {getTranslation('status.noItems', 'en')} / {getTranslation('status.noItems', 'ar')}
               </div>
             )}
           </div>
