@@ -7,14 +7,15 @@ import { getTranslation } from '../utils/translations';
 
 interface QueuePanelProps {
   passengers: Passenger[];
+  language?: 'en' | 'ar';
 }
 
-const QueuePanel: React.FC<QueuePanelProps> = ({ passengers }) => {
+const QueuePanel: React.FC<QueuePanelProps> = ({ passengers, language = 'ar' }) => {
   return (
     <Card className="h-full">
       <CardHeader className="bg-security-primary text-white">
         <CardTitle className="flex items-center text-base font-semibold">
-          <span>{getTranslation('panel.queue')}</span>
+          <span>{getTranslation('panel.queue', language)}</span>
           <span className="ml-auto bg-white text-security-primary px-2 py-0.5 rounded-full text-xs">
             {passengers.length}
           </span>
@@ -32,24 +33,24 @@ const QueuePanel: React.FC<QueuePanelProps> = ({ passengers }) => {
                   <div className="flex-1">
                     <p className="font-medium">{passenger.name}</p>
                     <div className="flex text-xs text-gray-500 space-x-2">
-                      <span>{getTranslation('ui.nationality')}: {passenger.nationality}</span>
+                      <span>{getTranslation('ui.nationality', language)}: {passenger.nationality}</span>
                       <span>•</span>
-                      <span>{getTranslation('ui.flight')}: {passenger.flight}</span>
+                      <span>{getTranslation('ui.flight', language)}: {passenger.flight}</span>
                     </div>
                     <div className="text-xs text-gray-500">
-                      {getTranslation('ui.passport')}: {passenger.passportNumber}
+                      {getTranslation('ui.passport', language)}: {passenger.passportNumber}
                     </div>
                   </div>
                   {index === 0 && (
                     <div className="text-xs bg-blue-100 px-2 py-1 rounded text-security-secondary">
-                      {getTranslation('status.next')}
+                      {getTranslation('status.next', language)}
                     </div>
                   )}
                 </div>
               ))
             ) : (
               <div className="p-6 text-center text-gray-500">
-                {getTranslation('status.noPassengers')}
+                {getTranslation('status.noPassengers', language)}
               </div>
             )}
           </div>

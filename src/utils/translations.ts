@@ -1,3 +1,4 @@
+
 // Dynamic translations for UI elements
 // الترجمات الديناميكية لعناصر واجهة المستخدم
 
@@ -180,9 +181,6 @@ const translations: Record<TranslationKey, { en: string; ar: string }> = {
 
 // Get translation for a key based on current language
 // الحصول على الترجمة لمفتاح معين بناءً على اللغة الحالية
-export function getTranslation(key: TranslationKey): string {
-  // Currently hardcoded to English, but could be made dynamic
-  // حاليًا مضبوط على اللغة الإنجليزية، ولكن يمكن جعله ديناميكيًا
-  const language = 'en';
-  return translations[key][language as keyof typeof translations[typeof key]];
+export function getTranslation(key: TranslationKey, language: 'en' | 'ar' = 'ar'): string {
+  return translations[key][language];
 }
