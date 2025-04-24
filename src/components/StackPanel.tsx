@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BaggageItem } from '@/models/passenger';
+import { getTranslation } from '../utils/translations';
 
 interface StackPanelProps {
   items: BaggageItem[];
@@ -11,8 +12,10 @@ interface StackPanelProps {
 }
 
 const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, scanning }) => {
+  // حالة لتتبع العنصر المحدد حاليًا - State to track currently highlighted item
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
+  // تأثير جانبي لتحديث العنصر المحدد عندما يتغير المؤشر - Side effect to update highlighted item when index changes
   useEffect(() => {
     if (currentItemIndex >= 0 && currentItemIndex < items.length) {
       setHighlightedIndex(currentItemIndex);
@@ -25,7 +28,7 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
     <Card className="h-full">
       <CardHeader className="bg-security-secondary text-white">
         <CardTitle className="flex items-center text-base font-semibold">
-          <span>Stack Panel (LIFO)</span>
+          <span>{getTranslation('panel.stack')}</span>
           <span className="ml-auto bg-white text-security-secondary px-2 py-0.5 rounded-full text-xs">
             {items.length}
           </span>
@@ -35,15 +38,17 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
         <ScrollArea className="h-[calc(100%-2rem)] max-h-[350px]">
           <div className="divide-y">
             {items.length > 0 ? (
+              // عرض العناصر بترتيب معكوس (من الأعلى إلى الأسفل) - Display items in reverse order (top to bottom)
               [...items].reverse().map((item, reversedIndex) => {
-                const actualIndex = items.length - 1 - reversedIndex;
-                const isDangerous = item.isDangerous;
-                const isHighlighted = actualIndex === highlightedIndex;
+                const actualIndex = items.length - 1 - reversedIndex; // الفهرس الحقيقي في المصفوفة الأصلية - Actual index in original array
+                const isDangerous = item.isDangerous; // هل العنصر خطير - Is the item dangerous
+                const isHighlighted = actualIndex === highlightedIndex; // هل تم تحديد هذا العنصر - Is this item being highlighted
                 
                 return (
                   <div 
                     key={item.id} 
                     className={`p-3 flex items-center justify-between ${
+                      // تطبيق تنسيق مختلف بناءً على حالة العنصر - Apply different styling based on item state
                       isHighlighted ? (isDangerous ? 'bg-red-50 animate-pulse-red' : 'bg-green-50') : ''
                     }`}
                   >
@@ -55,26 +60,29 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
                     </div>
                     
                     {scanning && isHighlighted && (
+                      // عرض حالة العنصر أثناء الفحص - Show item status during scanning
                       <div className={`text-xs px-2 py-1 rounded ${
                         isDangerous 
                           ? 'bg-red-100 text-red-800' 
                           : 'bg-green-100 text-green-800'
                       }`}>
-                        {isDangerous ? 'DANGEROUS' : 'SAFE'}
+                        {isDangerous ? getTranslation('status.dangerous') : getTranslation('status.safe')}
                       </div>
                     )}
                     
                     {actualIndex === items.length - 1 && !scanning && (
+                      // تمييز العنصر في أعلى المكدس - Highlight top item in stack
                       <div className="text-xs bg-blue-100 px-2 py-1 rounded text-security-secondary">
-                        Top
+                        {getTranslation('status.top')}
                       </div>
                     )}
                   </div>
                 );
               })
             ) : (
+              // رسالة عندما يكون المكدس فارغًا - Message when stack is empty
               <div className="p-6 text-center text-gray-500">
-                No items in stack
+                {getTranslation('status.noItems')}
               </div>
             )}
           </div>

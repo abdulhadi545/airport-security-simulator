@@ -16,7 +16,7 @@ const QueuePanel: React.FC<QueuePanelProps> = ({ passengers }) => {
         <CardTitle className="flex items-center text-base font-semibold">
           <span>{getTranslation('panel.queue')}</span>
           <span className="ml-auto bg-white text-security-primary px-2 py-0.5 rounded-full text-xs">
-            {passengers.length}
+            {passengers.length} {/* عدد المسافرين في الطابور - Passenger count in queue */}
           </span>
         </CardTitle>
       </CardHeader>
@@ -27,20 +27,22 @@ const QueuePanel: React.FC<QueuePanelProps> = ({ passengers }) => {
               passengers.map((passenger, index) => (
                 <div 
                   key={passenger.id} 
-                  className={`p-3 flex items-center ${index === 0 ? 'bg-blue-50' : ''}`}
+                  className={`p-3 flex items-center ${index === 0 ? 'bg-blue-50' : ''}`} 
+                  // تمييز المسافر التالي في الطابور - Highlight next passenger in queue
                 >
                   <div className="flex-1">
-                    <p className="font-medium">{passenger.name}</p>
+                    <p className="font-medium">{passenger.name}</p> {/* اسم المسافر - Passenger name */}
                     <div className="flex text-xs text-gray-500 space-x-2">
-                      <span>{passenger.nationality}</span>
+                      <span>{passenger.nationality}</span> {/* جنسية المسافر - Passenger nationality */}
                       <span>•</span>
-                      <span>Flight: {passenger.flight}</span>
+                      <span>Flight: {passenger.flight}</span> {/* رقم الرحلة - Flight number */}
                     </div>
                     <div className="text-xs text-gray-500">
-                      Passport: {passenger.passportNumber}
+                      Passport: {passenger.passportNumber} {/* رقم جواز السفر - Passport number */}
                     </div>
                   </div>
                   {index === 0 && (
+                    // علامة "التالي" للمسافر الأول في الطابور - "Next" label for first passenger in queue
                     <div className="text-xs bg-blue-100 px-2 py-1 rounded text-security-secondary">
                       {getTranslation('status.next')}
                     </div>
@@ -48,8 +50,9 @@ const QueuePanel: React.FC<QueuePanelProps> = ({ passengers }) => {
                 </div>
               ))
             ) : (
+              // رسالة عندما يكون الطابور فارغًا - Message when queue is empty
               <div className="p-6 text-center text-gray-500">
-                No passengers in queue / لا يوجد مسافرين في الطابور
+                {getTranslation('status.noPassengers')}
               </div>
             )}
           </div>

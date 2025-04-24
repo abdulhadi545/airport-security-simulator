@@ -90,6 +90,14 @@ export const translations: Record<string, Translation> = {
     en: 'No logs yet',
     ar: 'لا توجد سجلات حتى الآن'  // لا توجد سجلات متاحة بعد - No logs available yet
   },
+  'status.noItems': {
+    en: 'No items in stack',
+    ar: 'لا توجد عناصر في المكدس'  // لا توجد عناصر في المكدس حاليًا - No items currently in stack
+  },
+  'status.noPassengers': {
+    en: 'No passengers in queue',
+    ar: 'لا يوجد مسافرين في الطابور'  // لا يوجد مسافرون في قائمة الانتظار - No passengers in waiting line
+  },
 
   // ترجمات الإحصائيات - Stats translations
   'stats.totalPassengers': {
@@ -108,6 +116,44 @@ export const translations: Record<string, Translation> = {
     en: 'Blacklist Matches',
     ar: 'مطابقات القائمة السوداء'  // عدد المطابقات مع القائمة السوداء - Number of blacklist matches
   },
+  
+  // ترجمات جديدة لأجزاء المحاكاة - New translations for simulation parts
+  'simulation.processing': {
+    en: 'Processing passenger',
+    ar: 'معالجة المسافر'  // معالجة بيانات وأمتعة المسافر - Processing passenger data and baggage
+  },
+  'simulation.scanning': {
+    en: 'Scanning baggage',
+    ar: 'فحص الأمتعة'  // فحص محتويات الحقائب - Scanning baggage contents
+  },
+  'simulation.completed': {
+    en: 'Scan completed',
+    ar: 'اكتمل الفحص'  // اكتمال عملية فحص الأمتعة - Baggage scan process completed
+  },
+  'simulation.itemDetected': {
+    en: 'Item detected',
+    ar: 'تم اكتشاف عنصر'  // تم اكتشاف عنصر في الأمتعة - Item found in baggage
+  },
+  'simulation.alertDangerous': {
+    en: 'ALERT: Dangerous item detected',
+    ar: 'تنبيه: تم اكتشاف عنصر خطير'  // تنبيه عن وجود عنصر خطير - Warning about dangerous item
+  },
+  'simulation.alertBlacklist': {
+    en: 'ALERT: Passenger on blacklist',
+    ar: 'تنبيه: المسافر مدرج في القائمة السوداء'  // تنبيه عن وجود المسافر في القائمة السوداء - Warning about blacklisted passenger
+  },
+  'simulation.queueEmpty': {
+    en: 'Queue is empty',
+    ar: 'الطابور فارغ'  // لا يوجد مسافرين في قائمة الانتظار - No passengers in waiting queue
+  },
+  'simulation.systemInitialized': {
+    en: 'System initialized',
+    ar: 'تم تهيئة النظام'  // تم تهيئة وإعداد النظام للعمل - System prepared and ready
+  },
+  'simulation.exportCompleted': {
+    en: 'Report exported',
+    ar: 'تم تصدير التقرير'  // تم تصدير تقرير البيانات - Data report exported
+  }
 };
 
 // دالة للحصول على الترجمة بالإنجليزية والعربية
@@ -120,4 +166,3 @@ export function getTranslation(key: string): string {
   }
   return `${translation.en} / ${translation.ar}`;
 }
-
