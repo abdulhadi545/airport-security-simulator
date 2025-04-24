@@ -20,8 +20,12 @@ const SimulationHeader: React.FC = () => {
           <Shield className="h-8 w-8 text-white" />
         </motion.div>
         <div>
-          <h1 className="text-xl font-bold">{getTranslation('simulator.title')}</h1>
-          <p className="text-sm opacity-80">{getTranslation('simulator.description')}</p>
+          <h1 className="text-xl font-bold">
+            {getTranslation('simulator.title', 'en')} / {getTranslation('simulator.title', 'ar')}
+          </h1>
+          <p className="text-sm opacity-80">
+            {getTranslation('simulator.description', 'en')} / {getTranslation('simulator.description', 'ar')}
+          </p>
         </div>
       </div>
       <div className="flex items-center">
@@ -37,7 +41,7 @@ const SimulationHeader: React.FC = () => {
           }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          <span className="mr-1">{getTranslation('simulator.liveStatus')}</span>
+          <span className="mr-1">{getTranslation('simulator.liveStatus', 'en')} / {getTranslation('simulator.liveStatus', 'ar')}</span>
           <Plane className="h-3 w-3" />
         </motion.div>
         <motion.div
