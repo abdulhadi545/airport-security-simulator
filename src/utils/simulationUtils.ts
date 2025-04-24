@@ -1,4 +1,3 @@
-
 // Utility types and functions for the airport security simulation
 // الأنواع والوظائف المساعدة لمحاكاة أمن المطار
 
@@ -186,17 +185,9 @@ export const exportToCsv = (stats: SimulationStats, logs: SimulationLog[]): stri
 export const downloadCsv = (csvData: string, filename: string): void => {
   const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
-  
-  // Create download link
-  // إنشاء رابط للتحميل
-  if (navigator.msSaveBlob) {
-    // For IE
-    navigator.msSaveBlob(blob, filename);
-  } else {
-    link.href = URL.createObjectURL(blob);
-    link.setAttribute('download', filename);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+  link.href = URL.createObjectURL(blob);
+  link.setAttribute('download', filename);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };
