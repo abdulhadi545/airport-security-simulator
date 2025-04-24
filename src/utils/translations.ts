@@ -31,7 +31,12 @@ type TranslationKey =
   | 'stats.totalPassengers'
   | 'stats.alarmedPassengers'
   | 'stats.clearedPassengers'
-  | 'stats.blacklistMatches';
+  | 'stats.blacklistMatches'
+  
+  // Simulator header
+  | 'simulator.title'
+  | 'simulator.description'
+  | 'simulator.liveStatus';
 
 const translations: Record<TranslationKey, { en: string; ar: string }> = {
   // Panel titles
@@ -128,6 +133,20 @@ const translations: Record<TranslationKey, { en: string; ar: string }> = {
   'stats.blacklistMatches': {
     en: 'Blacklist Hits',
     ar: 'إصابات القائمة السوداء'
+  },
+
+  // Simulator header
+  'simulator.title': {
+    en: 'Airport Security Simulator',
+    ar: 'محاكي أمن المطار'
+  },
+  'simulator.description': {
+    en: 'Data Structures Visualization',
+    ar: 'تصور هياكل البيانات'
+  },
+  'simulator.liveStatus': {
+    en: 'Live',
+    ar: 'مباشر'
   }
 };
 
