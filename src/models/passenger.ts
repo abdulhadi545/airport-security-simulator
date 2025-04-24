@@ -1,31 +1,37 @@
 
+// Data models for passengers and baggage in the security system
+// نماذج البيانات للمسافرين والأمتعة في نظام الأمن
+
 export interface Passenger {
-  id: string;
-  name: string;
-  nationality: string;
-  passportNumber: string;
-  flight: string;
-  baggage: Baggage;
-  blacklisted: boolean;
+  id: string;                // Unique passenger ID | معرف المسافر الفريد
+  name: string;              // Passenger name | اسم المسافر
+  nationality: string;       // Passenger nationality | جنسية المسافر
+  passportNumber: string;    // Passport number | رقم جواز السفر
+  flight: string;           // Flight number | رقم الرحلة
+  baggage: Baggage;         // Passenger's baggage | أمتعة المسافر
+  blacklisted: boolean;     // Blacklist status | حالة القائمة السوداء
 }
 
 export interface Baggage {
-  id: string;
-  items: BaggageItem[];
+  id: string;              // Baggage ID | معرف الأمتعة
+  items: BaggageItem[];    // List of items | قائمة المحتويات
 }
 
 export interface BaggageItem {
-  id: string;
-  name: string;
-  isDangerous: boolean;
+  id: string;              // Item ID | معرف العنصر
+  name: string;            // Item name | اسم العنصر
+  isDangerous: boolean;    // Dangerous item flag | علامة العنصر الخطير
 }
 
+// Predefined lists for simulation data
+// قوائم محددة مسبقاً لبيانات المحاكاة
+
 export const DANGEROUS_ITEMS = [
-  "Knife",
-  "Gun",
-  "Explosives",
-  "Flammable Liquid",
-  "Cutting Tool"
+  "Knife",            // سكين
+  "Gun",              // مسدس
+  "Explosives",       // متفجرات
+  "Flammable Liquid", // سائل قابل للاشتعال
+  "Cutting Tool"      // أداة قطع
 ];
 
 export const NATIONALITIES = [
@@ -35,9 +41,16 @@ export const NATIONALITIES = [
 ];
 
 export const COMMON_ITEMS = [
-  "Clothes", "Book", "Laptop", "Phone", "Headphones",
-  "Camera", "Toothbrush", "Shampoo", "Wallet", "Charger",
-  "Umbrella", "Sunglasses", "Medication", "Watch", "Hat"
+  "Clothes",     // ملابس
+  "Book",        // كتاب
+  "Laptop",      // حاسوب محمول
+  "Phone",       // هاتف
+  "Headphones",  // سماعات
+  "Camera",      // كاميرا
+  "Toothbrush",  // فرشاة أسنان
+  "Shampoo",     // شامبو
+  "Wallet",      // محفظة
+  "Charger"      // شاحن
 ];
 
 export const FLIGHTS = [
