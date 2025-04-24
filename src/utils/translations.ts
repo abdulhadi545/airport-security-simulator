@@ -1,4 +1,3 @@
-
 type Translation = {
   en: string;
   ar: string;
@@ -19,26 +18,26 @@ export const translations: Record<string, Translation> = {
     ar: 'محاكاة مباشرة'
   },
 
-  // Panel translations
+  // Panel translations with detailed Arabic explanations
   'panel.blacklist': {
     en: 'Blacklist (Linked List)',
-    ar: 'القائمة السوداء (قائمة مرتبطة)'
+    ar: 'القائمة السوداء (قائمة متسلسلة)'  // Blacklist implemented as a linked list data structure
   },
   'panel.queue': {
     en: 'Queue Panel (FIFO)',
-    ar: 'لوحة الطابور (الأول يخرج أولاً)'
+    ar: 'لوحة الطابور (الأول يخرج أولاً)'  // Queue panel using First-In-First-Out principle
   },
   'panel.stack': {
     en: 'Stack Panel (LIFO)',
-    ar: 'لوحة المكدس (الأخير يخرج أولاً)'
+    ar: 'لوحة المكدس (الآخر يخرج أولاً)'  // Stack panel using Last-In-First-Out principle
   },
   'panel.logs': {
     en: 'Log Panel',
-    ar: 'لوحة السجلات'
+    ar: 'لوحة السجلات'  // Panel showing system logs and events
   },
   'panel.controls': {
     en: 'Control Panel',
-    ar: 'لوحة التحكم'
+    ar: 'لوحة التحكم'  // Panel for simulation controls
   },
 
   // Button translations
@@ -59,34 +58,34 @@ export const translations: Record<string, Translation> = {
     ar: 'تصدير التقرير'
   },
 
-  // Status translations
+  // Status translations with Arabic explanations
   'status.checking': {
     en: 'Checking',
-    ar: 'جاري الفحص'
+    ar: 'جاري الفحص'  // Currently being checked/verified
   },
   'status.next': {
     en: 'Next',
-    ar: 'التالي'
+    ar: 'التالي'  // Next item in sequence
   },
   'status.dangerous': {
     en: 'DANGEROUS',
-    ar: 'خطير'
+    ar: 'خطير'  // Marked as dangerous item
   },
   'status.safe': {
     en: 'SAFE',
-    ar: 'آمن'
+    ar: 'آمن'  // Marked as safe item
   },
   'status.top': {
     en: 'Top',
-    ar: 'أعلى'
+    ar: 'أعلى المكدس'  // Top of the stack
   },
   'status.noBlacklist': {
     en: 'No blacklisted passports',
-    ar: 'لا توجد جوازات سفر في القائمة السوداء'
+    ar: 'لا توجد جوازات سفر في القائمة السوداء'  // No passports in blacklist
   },
   'status.noLogs': {
     en: 'No logs yet',
-    ar: 'لا توجد سجلات بعد'
+    ar: 'لا توجد سجلات حتى الآن'  // No system logs available yet
   },
 
   // Stats translations
