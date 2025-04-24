@@ -1,4 +1,3 @@
-
 // Dynamic translations for UI elements
 // الترجمات الديناميكية لعناصر واجهة المستخدم
 
@@ -36,17 +35,24 @@ type TranslationKey =
   // Simulator header
   | 'simulator.title'
   | 'simulator.description'
-  | 'simulator.liveStatus';
+  | 'simulator.liveStatus'
+  
+  // Additional UI text
+  | 'ui.flight'
+  | 'ui.passport'
+  | 'ui.nationality'
+  | 'ui.statistics'
+  | 'ui.itemNumber';
 
 const translations: Record<TranslationKey, { en: string; ar: string }> = {
   // Panel titles
   'panel.queue': {
     en: 'Passenger Queue',
-    ar: 'طابور المسافرين'
+    ar: 'قائمة انتظار المسافرين'
   },
   'panel.stack': {
     en: 'Baggage Stack',
-    ar: 'مكدس الأمتعة'
+    ar: 'مجموعة الأمتعة'
   },
   'panel.blacklist': {
     en: 'Passport Blacklist',
@@ -64,7 +70,7 @@ const translations: Record<TranslationKey, { en: string; ar: string }> = {
   // Button labels
   'button.loadData': {
     en: 'Load Sample Data',
-    ar: 'تحميل بيانات نموذجية'
+    ar: 'تحميل البيانات التجريبية'
   },
   'button.newPassenger': {
     en: 'Add Passenger',
@@ -102,7 +108,7 @@ const translations: Record<TranslationKey, { en: string; ar: string }> = {
   },
   'status.noPassengers': {
     en: 'No passengers in queue',
-    ar: 'لا يوجد مسافرين في الطابور'
+    ar: 'لا يوجد مسافرين في قائمة الانتظار'
   },
   'status.noItems': {
     en: 'No items to display',
@@ -132,7 +138,7 @@ const translations: Record<TranslationKey, { en: string; ar: string }> = {
   },
   'stats.blacklistMatches': {
     en: 'Blacklist Hits',
-    ar: 'إصابات القائمة السوداء'
+    ar: 'تطابقات القائمة السوداء'
   },
 
   // Simulator header
@@ -147,6 +153,28 @@ const translations: Record<TranslationKey, { en: string; ar: string }> = {
   'simulator.liveStatus': {
     en: 'Live',
     ar: 'مباشر'
+  },
+
+  // Additional UI text
+  'ui.flight': {
+    en: 'Flight',
+    ar: 'رحلة'
+  },
+  'ui.passport': {
+    en: 'Passport',
+    ar: 'جواز سفر'
+  },
+  'ui.nationality': {
+    en: 'Nationality',
+    ar: 'الجنسية'
+  },
+  'ui.statistics': {
+    en: 'Statistics',
+    ar: 'الإحصائيات'
+  },
+  'ui.itemNumber': {
+    en: 'Item #',
+    ar: 'عنصر رقم'
   }
 };
 

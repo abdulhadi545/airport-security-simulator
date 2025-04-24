@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -59,7 +58,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         
         <Separator className="my-2" />
         
-        <div className="text-sm font-medium">Statistics</div>
+        <div className="text-sm font-medium">{getTranslation('ui.statistics')}</div>
         <div className="grid grid-cols-2 gap-2 text-sm">
           <div className="bg-gray-50 p-2 rounded">
             <div className="text-xs text-gray-500">{getTranslation('stats.totalPassengers')}</div>

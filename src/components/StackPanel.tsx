@@ -12,10 +12,8 @@ interface StackPanelProps {
 }
 
 const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, scanning }) => {
-  // حالة لتتبع العنصر المحدد حاليًا - State to track currently highlighted item
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
-  // تأثير جانبي لتحديث العنصر المحدد عندما يتغير المؤشر - Side effect to update highlighted item when index changes
   useEffect(() => {
     if (currentItemIndex >= 0 && currentItemIndex < items.length) {
       setHighlightedIndex(currentItemIndex);
@@ -38,29 +36,26 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
         <ScrollArea className="h-[calc(100%-2rem)] max-h-[350px]">
           <div className="divide-y">
             {items.length > 0 ? (
-              // عرض العناصر بترتيب معكوس (من الأعلى إلى الأسفل) - Display items in reverse order (top to bottom)
               [...items].reverse().map((item, reversedIndex) => {
-                const actualIndex = items.length - 1 - reversedIndex; // الفهرس الحقيقي في المصفوفة الأصلية - Actual index in original array
-                const isDangerous = item.isDangerous; // هل العنصر خطير - Is the item dangerous
-                const isHighlighted = actualIndex === highlightedIndex; // هل تم تحديد هذا العنصر - Is this item being highlighted
+                const actualIndex = items.length - 1 - reversedIndex;
+                const isDangerous = item.isDangerous;
+                const isHighlighted = actualIndex === highlightedIndex;
                 
                 return (
                   <div 
                     key={item.id} 
                     className={`p-3 flex items-center justify-between ${
-                      // تطبيق تنسيق مختلف بناءً على حالة العنصر - Apply different styling based on item state
                       isHighlighted ? (isDangerous ? 'bg-red-50 animate-pulse-red' : 'bg-green-50') : ''
                     }`}
                   >
                     <div className="flex-1">
                       <p className="font-medium">{item.name}</p>
                       <div className="text-xs text-gray-500">
-                        Item #{actualIndex + 1}
+                        {getTranslation('ui.itemNumber')}{actualIndex + 1}
                       </div>
                     </div>
                     
                     {scanning && isHighlighted && (
-                      // عرض حالة العنصر أثناء الفحص - Show item status during scanning
                       <div className={`text-xs px-2 py-1 rounded ${
                         isDangerous 
                           ? 'bg-red-100 text-red-800' 
@@ -71,7 +66,6 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
                     )}
                     
                     {actualIndex === items.length - 1 && !scanning && (
-                      // تمييز العنصر في أعلى المكدس - Highlight top item in stack
                       <div className="text-xs bg-blue-100 px-2 py-1 rounded text-security-secondary">
                         {getTranslation('status.top')}
                       </div>
@@ -80,7 +74,6 @@ const StackPanel: React.FC<StackPanelProps> = ({ items, currentItemIndex = -1, s
                 );
               })
             ) : (
-              // رسالة عندما يكون المكدس فارغًا - Message when stack is empty
               <div className="p-6 text-center text-gray-500">
                 {getTranslation('status.noItems')}
               </div>
