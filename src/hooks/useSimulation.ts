@@ -9,6 +9,8 @@ import {
   createRandomPassenger,
   generateInitialBlacklist,
   generateRandomPassengers,
+  exportToCsv,
+  downloadCsv
 } from '@/utils/simulationUtils';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -205,6 +207,13 @@ export const useSimulation = () => {
     setSimulationInProgress(false);
   }, [passengerQueue, updatePassengersFromQueue, checkBlacklist, scanBaggage, addLog]);
 
+  // Export simulation report
+  const handleExportReport = useCallback(() => {
+    const csvData = exportToCsv(stats, logs);
+    downloadCsv(csvData, `security-simulation-report-${new Date().toISOString().split('T')[0]}.csv`);
+    addLog("Simulation report exported to CSV", "success");
+  }, [stats, logs, addLog]);
+
   return {
     passengers,
     currentItems,
@@ -219,5 +228,6 @@ export const useSimulation = () => {
     handleLoadData,
     handleNewPassenger,
     processNextPassenger,
+    handleExportReport,
   };
 };

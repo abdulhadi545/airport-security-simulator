@@ -24,6 +24,7 @@ const Index = () => {
     handleLoadData,
     handleNewPassenger,
     processNextPassenger,
+    handleExportReport,
   } = useSimulation();
 
   useEffect(() => {
@@ -56,6 +57,7 @@ const Index = () => {
             onLoadData={handleLoadData}
             onNewPassenger={handleNewPassenger}
             onStartSimulation={processNextPassenger}
+            onExportReport={handleExportReport}
             stats={stats}
             simulationInProgress={simulationInProgress}
           />

@@ -1,168 +1,141 @@
 
-type Translation = {
-  en: string;
-  ar: string;
-};
+// Dynamic translations for UI elements
+// الترجمات الديناميكية لعناصر واجهة المستخدم
 
-// تخزين جميع الترجمات للتطبيق
-// Store all translations for the application
-export const translations: Record<string, Translation> = {
-  // ترجمات العنوان - Header translations
-  'simulator.title': {
-    en: 'Airport Baggage Security Simulator',
-    ar: 'محاكي أمن أمتعة المطار'
-  },
-  'simulator.description': {
-    en: 'Interactive simulation of airport security checkpoint',
-    ar: 'محاكاة تفاعلية لنقطة التفتيش الأمني بالمطار'
-  },
-  'simulator.liveStatus': {
-    en: 'Live Simulation',
-    ar: 'محاكاة مباشرة'
-  },
+type TranslationKey =
+  // Panel titles
+  | 'panel.queue'
+  | 'panel.stack'
+  | 'panel.blacklist'
+  | 'panel.logs'
+  | 'panel.controls'
+  
+  // Button labels
+  | 'button.loadData'
+  | 'button.newPassenger'
+  | 'button.startSimulation'
+  | 'button.exportReport'
+  
+  // Status messages
+  | 'status.next'
+  | 'status.top'
+  | 'status.checking'
+  | 'status.dangerous'
+  | 'status.safe'
+  | 'status.noPassengers'
+  | 'status.noItems'
+  | 'status.noBlacklist'
+  | 'status.noLogs'
+  
+  // Statistics
+  | 'stats.totalPassengers'
+  | 'stats.alarmedPassengers'
+  | 'stats.clearedPassengers'
+  | 'stats.blacklistMatches';
 
-  // ترجمات اللوحات مع شرح مفصل بالعربية - Panel translations with detailed Arabic explanations
-  'panel.blacklist': {
-    en: 'Blacklist (Linked List)',
-    ar: 'القائمة السوداء (قائمة متسلسلة)'  // هيكل بيانات يستخدم القائمة المتسلسلة - Data structure using linked list
-  },
+const translations: Record<TranslationKey, { en: string; ar: string }> = {
+  // Panel titles
   'panel.queue': {
-    en: 'Queue Panel (FIFO)',
-    ar: 'لوحة الطابور (الأول يخرج أولاً)'  // نظام الطابور: الأول في الدخول هو الأول في الخروج - First In First Out principle
+    en: 'Passenger Queue',
+    ar: 'طابور المسافرين'
   },
   'panel.stack': {
-    en: 'Stack Panel (LIFO)',
-    ar: 'لوحة المكدس (الآخر يخرج أولاً)'  // نظام المكدس: الآخر في الدخول هو الأول في الخروج - Last In First Out principle
+    en: 'Baggage Stack',
+    ar: 'مكدس الأمتعة'
+  },
+  'panel.blacklist': {
+    en: 'Passport Blacklist',
+    ar: 'القائمة السوداء لجوازات السفر'
   },
   'panel.logs': {
-    en: 'Log Panel',
-    ar: 'لوحة السجلات'  // لوحة تعرض سجلات وأحداث النظام - Panel showing system events and logs
+    en: 'System Logs',
+    ar: 'سجلات النظام'
   },
   'panel.controls': {
     en: 'Control Panel',
-    ar: 'لوحة التحكم'  // لوحة للتحكم في المحاكاة - Panel for controlling the simulation
+    ar: 'لوحة التحكم'
   },
-
-  // ترجمات الأزرار - Button translations
+  
+  // Button labels
   'button.loadData': {
-    en: 'Load Data',
-    ar: 'تحميل البيانات'  // زر لتحميل البيانات في النظام - Button to load data into the system
+    en: 'Load Sample Data',
+    ar: 'تحميل بيانات نموذجية'
   },
   'button.newPassenger': {
-    en: 'New Passenger',
-    ar: 'مسافر جديد'  // إضافة مسافر جديد إلى النظام - Add new passenger to the system
+    en: 'Add Passenger',
+    ar: 'إضافة مسافر'
   },
   'button.startSimulation': {
-    en: 'Start Simulation',
-    ar: 'بدء المحاكاة'  // بدء عملية المحاكاة - Start the simulation process
+    en: 'Process Next Passenger',
+    ar: 'معالجة المسافر التالي'
   },
   'button.exportReport': {
     en: 'Export Report',
-    ar: 'تصدير التقرير'  // تصدير تقرير بالنتائج - Export results report
+    ar: 'تصدير التقرير'
   },
-
-  // ترجمات الحالات مع شرح بالعربية - Status translations with Arabic explanations
-  'status.checking': {
-    en: 'Checking',
-    ar: 'جاري الفحص'  // جاري التحقق من العنصر حالياً - Currently verifying the item
-  },
+  
+  // Status messages
   'status.next': {
     en: 'Next',
-    ar: 'التالي'  // العنصر التالي في التسلسل - Next item in sequence
-  },
-  'status.dangerous': {
-    en: 'DANGEROUS',
-    ar: 'خطير'  // تم تحديد العنصر كخطير - Item marked as dangerous
-  },
-  'status.safe': {
-    en: 'SAFE',
-    ar: 'آمن'  // تم تحديد العنصر كآمن - Item marked as safe
+    ar: 'التالي'
   },
   'status.top': {
     en: 'Top',
-    ar: 'أعلى المكدس'  // أعلى عنصر في المكدس - Top item in the stack
+    ar: 'الأعلى'
   },
-  'status.noBlacklist': {
-    en: 'No blacklisted passports',
-    ar: 'لا توجد جوازات سفر في القائمة السوداء'  // لا توجد جوازات سفر محظورة - No forbidden passports
+  'status.checking': {
+    en: 'Checking',
+    ar: 'جارٍ الفحص'
   },
-  'status.noLogs': {
-    en: 'No logs yet',
-    ar: 'لا توجد سجلات حتى الآن'  // لا توجد سجلات متاحة بعد - No logs available yet
+  'status.dangerous': {
+    en: 'DANGEROUS',
+    ar: 'خطير'
   },
-  'status.noItems': {
-    en: 'No items in stack',
-    ar: 'لا توجد عناصر في المكدس'  // لا توجد عناصر في المكدس حاليًا - No items currently in stack
+  'status.safe': {
+    en: 'Safe',
+    ar: 'آمن'
   },
   'status.noPassengers': {
     en: 'No passengers in queue',
-    ar: 'لا يوجد مسافرين في الطابور'  // لا يوجد مسافرون في قائمة الانتظار - No passengers in waiting line
+    ar: 'لا يوجد مسافرين في الطابور'
   },
-
-  // ترجمات الإحصائيات - Stats translations
-  'stats.totalPassengers': {
-    en: 'Total Passengers',
-    ar: 'إجمالي المسافرين'  // العدد الكلي للمسافرين - Total number of passengers
+  'status.noItems': {
+    en: 'No items to display',
+    ar: 'لا توجد عناصر للعرض'
   },
-  'stats.alarmedPassengers': {
-    en: 'Alarmed Passengers',
-    ar: 'المسافرون المنذرون'  // عدد المسافرين الذين تم إنذارهم - Number of passengers that triggered alarms
+  'status.noBlacklist': {
+    en: 'No blacklisted passports',
+    ar: 'لا توجد جوازات سفر في القائمة السوداء'
   },
-  'stats.clearedPassengers': {
-    en: 'Cleared Passengers',
-    ar: 'المسافرون المصرح لهم'  // عدد المسافرين الذين تم تصريحهم - Number of cleared passengers
-  },
-  'stats.blacklistMatches': {
-    en: 'Blacklist Matches',
-    ar: 'مطابقات القائمة السوداء'  // عدد المطابقات مع القائمة السوداء - Number of blacklist matches
+  'status.noLogs': {
+    en: 'No system logs to display',
+    ar: 'لا توجد سجلات نظام للعرض'
   },
   
-  // ترجمات جديدة لأجزاء المحاكاة - New translations for simulation parts
-  'simulation.processing': {
-    en: 'Processing passenger',
-    ar: 'معالجة المسافر'  // معالجة بيانات وأمتعة المسافر - Processing passenger data and baggage
+  // Statistics
+  'stats.totalPassengers': {
+    en: 'Total Passengers',
+    ar: 'إجمالي المسافرين'
   },
-  'simulation.scanning': {
-    en: 'Scanning baggage',
-    ar: 'فحص الأمتعة'  // فحص محتويات الحقائب - Scanning baggage contents
+  'stats.alarmedPassengers': {
+    en: 'Alarmed',
+    ar: 'تنبيهات'
   },
-  'simulation.completed': {
-    en: 'Scan completed',
-    ar: 'اكتمل الفحص'  // اكتمال عملية فحص الأمتعة - Baggage scan process completed
+  'stats.clearedPassengers': {
+    en: 'Cleared',
+    ar: 'مصرح لهم'
   },
-  'simulation.itemDetected': {
-    en: 'Item detected',
-    ar: 'تم اكتشاف عنصر'  // تم اكتشاف عنصر في الأمتعة - Item found in baggage
-  },
-  'simulation.alertDangerous': {
-    en: 'ALERT: Dangerous item detected',
-    ar: 'تنبيه: تم اكتشاف عنصر خطير'  // تنبيه عن وجود عنصر خطير - Warning about dangerous item
-  },
-  'simulation.alertBlacklist': {
-    en: 'ALERT: Passenger on blacklist',
-    ar: 'تنبيه: المسافر مدرج في القائمة السوداء'  // تنبيه عن وجود المسافر في القائمة السوداء - Warning about blacklisted passenger
-  },
-  'simulation.queueEmpty': {
-    en: 'Queue is empty',
-    ar: 'الطابور فارغ'  // لا يوجد مسافرين في قائمة الانتظار - No passengers in waiting queue
-  },
-  'simulation.systemInitialized': {
-    en: 'System initialized',
-    ar: 'تم تهيئة النظام'  // تم تهيئة وإعداد النظام للعمل - System prepared and ready
-  },
-  'simulation.exportCompleted': {
-    en: 'Report exported',
-    ar: 'تم تصدير التقرير'  // تم تصدير تقرير البيانات - Data report exported
+  'stats.blacklistMatches': {
+    en: 'Blacklist Hits',
+    ar: 'إصابات القائمة السوداء'
   }
 };
 
-// دالة للحصول على الترجمة بالإنجليزية والعربية
-// Function to get translation in both English and Arabic
-export function getTranslation(key: string): string {
-  const translation = translations[key];
-  if (!translation) {
-    console.warn(`Translation missing for key: ${key}`);
-    return key;
-  }
-  return `${translation.en} / ${translation.ar}`;
+// Get translation for a key based on current language
+// الحصول على الترجمة لمفتاح معين بناءً على اللغة الحالية
+export function getTranslation(key: TranslationKey): string {
+  // Currently hardcoded to English, but could be made dynamic
+  // حاليًا مضبوط على اللغة الإنجليزية، ولكن يمكن جعله ديناميكيًا
+  const language = 'en';
+  return translations[key][language as keyof typeof translations[typeof key]];
 }
