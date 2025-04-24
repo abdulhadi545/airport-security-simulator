@@ -23,7 +23,7 @@ const Index = () => {
     initializeSimulation,
     handleLoadData,
     handleNewPassenger,
-    processNextPassenger,
+    processAllPassengers,
     handleExportReport,
   } = useSimulation();
 
@@ -56,7 +56,7 @@ const Index = () => {
           <ControlPanel 
             onLoadData={handleLoadData}
             onNewPassenger={handleNewPassenger}
-            onStartSimulation={processNextPassenger}
+            onStartSimulation={processAllPassengers}
             onExportReport={handleExportReport}
             stats={stats}
             simulationInProgress={simulationInProgress}

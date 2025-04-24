@@ -1,4 +1,3 @@
-
 import { useState, useCallback } from 'react';
 import { toast } from "@/components/ui/use-toast";
 import { PassengerQueue, BaggageStack, BlacklistLinkedList } from '@/utils/dataStructures';
@@ -183,28 +182,34 @@ export const useSimulation = () => {
     });
   }, [baggageStack, addLog]);
 
-  // Process next passenger
-  const processNextPassenger = useCallback(async () => {
+  // Process all passengers automatically
+  const processAllPassengers = useCallback(async () => {
     if (passengerQueue.isEmpty()) {
       addLog("Queue is empty. Add more passengers to continue.", "warning");
       return;
     }
-    
+
     setSimulationInProgress(true);
-    
-    const passenger = passengerQueue.dequeue()!;
-    updatePassengersFromQueue();
-    
-    addLog(`Processing passenger: ${passenger.name}`, "info");
-    
-    const isBlacklisted = await checkBlacklist(passenger);
-    
-    if (!isBlacklisted) {
-      addLog(`Scanning baggage of passenger: ${passenger.name}`, "info");
-      await scanBaggage(passenger.baggage.items);
+
+    try {
+      // Process all passengers in the queue
+      while (!passengerQueue.isEmpty()) {
+        const passenger = passengerQueue.dequeue()!;
+        updatePassengersFromQueue();
+        
+        addLog(`Processing passenger: ${passenger.name}`, "info");
+        
+        // Check blacklist for current passenger
+        const isBlacklisted = await checkBlacklist(passenger);
+        
+        if (!isBlacklisted) {
+          addLog(`Scanning baggage of passenger: ${passenger.name}`, "info");
+          await scanBaggage(passenger.baggage.items);
+        }
+      }
+    } finally {
+      setSimulationInProgress(false);
     }
-    
-    setSimulationInProgress(false);
   }, [passengerQueue, updatePassengersFromQueue, checkBlacklist, scanBaggage, addLog]);
 
   // Export simulation report
@@ -227,7 +232,7 @@ export const useSimulation = () => {
     initializeSimulation,
     handleLoadData,
     handleNewPassenger,
-    processNextPassenger,
+    processAllPassengers,
     handleExportReport,
   };
 };
