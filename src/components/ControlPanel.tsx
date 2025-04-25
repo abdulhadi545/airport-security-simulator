@@ -6,15 +6,17 @@ import { SimulationStats } from '@/utils/simulationUtils';
 import { Separator } from "@/components/ui/separator";
 import { getTranslation } from '../utils/translations';
 
+// واجهة خصائص لوحة التحكم
 interface ControlPanelProps {
-  onLoadData: () => void;
-  onNewPassenger: () => void;
-  onStartSimulation: () => void;
-  onExportReport: () => void;
-  stats: SimulationStats;
-  simulationInProgress: boolean;
+  onLoadData: () => void;              // دالة لتحميل البيانات
+  onNewPassenger: () => void;          // دالة لإضافة مسافر جديد
+  onStartSimulation: () => void;       // دالة لبدء المحاكاة
+  onExportReport: () => void;          // دالة لتصدير التقرير
+  stats: SimulationStats;              // إحصائيات المحاكاة
+  simulationInProgress: boolean;       // حالة المحاكاة (جارية أو متوقفة)
 }
 
+// مكون لوحة التحكم - يتحكم في عملية المحاكاة ويعرض الإحصائيات
 const ControlPanel: React.FC<ControlPanelProps> = ({
   onLoadData,
   onNewPassenger,
@@ -25,13 +27,16 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 }) => {
   return (
     <Card className="h-full">
+      {/* ترويسة لوحة التحكم */}
       <CardHeader className="bg-security-primary text-white">
         <CardTitle className="text-base font-semibold">
           {getTranslation('panel.controls', 'en')} / {getTranslation('panel.controls', 'ar')}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-4 flex flex-col gap-3">
+        {/* أزرار التحكم الرئيسية */}
         <div className="grid grid-cols-2 gap-3">
+          {/* زر تحميل البيانات */}
           <Button 
             variant="outline" 
             onClick={onLoadData}
@@ -40,6 +45,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           >
             {getTranslation('button.loadData', 'en')} / {getTranslation('button.loadData', 'ar')}
           </Button>
+          {/* زر إضافة مسافر جديد */}
           <Button 
             variant="outline" 
             onClick={onNewPassenger}
@@ -50,6 +56,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           </Button>
         </div>
         
+        {/* زر بدء المحاكاة */}
         <Button 
           variant="default" 
           onClick={onStartSimulation} 
@@ -59,30 +66,38 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           {getTranslation('button.startSimulation', 'en')} / {getTranslation('button.startSimulation', 'ar')}
         </Button>
         
+        {/* فاصل بين أزرار التحكم وقسم الإحصائيات */}
         <Separator className="my-2" />
         
+        {/* عنوان قسم الإحصائيات */}
         <div className="text-sm font-medium">
           {getTranslation('ui.statistics', 'en')} / {getTranslation('ui.statistics', 'ar')}
         </div>
+        
+        {/* عرض الإحصائيات */}
         <div className="grid grid-cols-2 gap-2 text-sm">
+          {/* إجمالي عدد المسافرين */}
           <div className="bg-gray-50 p-2 rounded">
             <div className="text-xs text-gray-500">
               {getTranslation('stats.totalPassengers', 'en')} / {getTranslation('stats.totalPassengers', 'ar')}
             </div>
             <div className="font-semibold">{stats.totalPassengers}</div>
           </div>
+          {/* عدد المسافرين المشتبه بهم */}
           <div className="bg-gray-50 p-2 rounded">
             <div className="text-xs text-gray-500">
               {getTranslation('stats.alarmedPassengers', 'en')} / {getTranslation('stats.alarmedPassengers', 'ar')}
             </div>
             <div className="font-semibold text-security-alert">{stats.alarmedPassengers}</div>
           </div>
+          {/* عدد المسافرين الذين تم تخليصهم */}
           <div className="bg-gray-50 p-2 rounded">
             <div className="text-xs text-gray-500">
               {getTranslation('stats.clearedPassengers', 'en')} / {getTranslation('stats.clearedPassengers', 'ar')}
             </div>
             <div className="font-semibold text-security-success">{stats.clearedPassengers}</div>
           </div>
+          {/* عدد التطابقات مع القائمة السوداء */}
           <div className="bg-gray-50 p-2 rounded">
             <div className="text-xs text-gray-500">
               {getTranslation('stats.blacklistMatches', 'en')} / {getTranslation('stats.blacklistMatches', 'ar')}
@@ -91,6 +106,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           </div>
         </div>
         
+        {/* زر تصدير التقرير */}
         <Button 
           variant="outline" 
           onClick={onExportReport}

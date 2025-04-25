@@ -13,6 +13,7 @@ import {
   FLIGHTS 
 } from '@/models/passenger';
 
+// واجهة سجلات المحاكاة
 export interface SimulationLog {
   id: string;           // Unique identifier | معرف فريد
   timestamp: Date;      // When the event occurred | وقت حدوث الحدث
@@ -20,6 +21,7 @@ export interface SimulationLog {
   type: 'info' | 'warning' | 'error' | 'success';  // Log type | نوع السجل
 }
 
+// واجهة إحصائيات المحاكاة
 export interface SimulationStats {
   totalPassengers: number;      // Total processed passengers | إجمالي المسافرين المعالجين
   alarmedPassengers: number;    // Passengers that triggered alarms | المسافرين الذين أطلقوا الإنذارات
@@ -30,6 +32,7 @@ export interface SimulationStats {
 // Helper functions for simulation logic
 // وظائف مساعدة لمنطق المحاكاة
 
+// إنشاء سجل جديد
 export const createLog = (
   message: string, 
   type: SimulationLog['type'] = 'info'
@@ -40,6 +43,7 @@ export const createLog = (
   type
 });
 
+// الإحصائيات الأولية للمحاكاة
 export const initialStats: SimulationStats = {
   totalPassengers: 0,
   alarmedPassengers: 0,

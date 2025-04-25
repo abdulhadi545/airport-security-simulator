@@ -5,13 +5,17 @@ import { SimulationLog } from '@/utils/simulationUtils';
 import { getTranslation } from '../utils/translations';
 import { Logs } from 'lucide-react';
 
+// واجهة خصائص لوحة السجلات
 interface LogPanelProps {
-  logs: SimulationLog[];
+  logs: SimulationLog[]; // قائمة سجلات المحاكاة
 }
 
+// مكون لوحة السجلات - يعرض سجلات وأحداث المحاكاة
 const LogPanel: React.FC<LogPanelProps> = ({ logs }) => {
+  // مرجع للمنطقة القابلة للتمرير للتحكم في موضع التمرير
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   
+  // تأثير جانبي لتحريك شريط التمرير تلقائيا إلى الأسفل عند إضافة سجلات جديدة
   useEffect(() => {
     if (scrollAreaRef.current) {
       const scrollArea = scrollAreaRef.current;
@@ -21,6 +25,7 @@ const LogPanel: React.FC<LogPanelProps> = ({ logs }) => {
   
   return (
     <Card className="h-full">
+      {/* ترويسة اللوحة مع عنوان وعدد السجلات */}
       <CardHeader className="bg-gray-800 text-white">
         <CardTitle className="flex items-center text-base font-semibold">
           <span className="flex items-center">
@@ -33,12 +38,14 @@ const LogPanel: React.FC<LogPanelProps> = ({ logs }) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
+        {/* منطقة العرض القابلة للتمرير للسجلات */}
         <div 
           ref={scrollAreaRef}
           className="h-[calc(100%-2rem)] max-h-[350px] overflow-y-auto"
         >
           <div className="divide-y">
             {logs.length > 0 ? (
+              // عرض السجلات إذا كانت موجودة
               logs.map((log) => (
                 <div 
                   key={log.id} 
@@ -53,6 +60,7 @@ const LogPanel: React.FC<LogPanelProps> = ({ logs }) => {
                 </div>
               ))
             ) : (
+              // عرض رسالة إذا لم تكن هناك سجلات
               <div className="p-6 text-center text-gray-500">
                 {getTranslation('status.noLogs', 'en')} / {getTranslation('status.noLogs', 'ar')}
               </div>
@@ -64,7 +72,7 @@ const LogPanel: React.FC<LogPanelProps> = ({ logs }) => {
   );
 };
 
-// Helper function for log type classes
+// دالة مساعدة لتحديد أنماط CSS بناءً على نوع السجل
 const getLogTypeClasses = (type: string) => {
   switch (type) {
     case 'error':
