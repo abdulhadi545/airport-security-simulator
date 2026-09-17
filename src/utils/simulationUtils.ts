@@ -55,11 +55,8 @@ export const initialStats: SimulationStats = {
 // توليد عناصر عشوائية للأمتعة
 const generateRandomItems = (count: number): BaggageItem[] => {
   const items: BaggageItem[] = [];
-  
-  // Always include 1-3 common items
-  // دائمًا تضمين 1-3 عناصر شائعة
-  const commonItemCount = Math.floor(Math.random() * 3) + 1;
-  for (let i = 0; i < commonItemCount; i++) {
+  const itemCount = Math.max(1, count);
+  for (let i = 0; i < itemCount; i++) {
     const randomItem = COMMON_ITEMS[Math.floor(Math.random() * COMMON_ITEMS.length)];
     items.push({
       id: uuidv4(),
@@ -68,15 +65,15 @@ const generateRandomItems = (count: number): BaggageItem[] => {
     });
   }
   
-  // Small chance to include a dangerous item (15%)
-  // فرصة صغيرة لتضمين عنصر خطير (15%)
+  // Keep baggage size stable while occasionally replacing one item with a threat.
   if (Math.random() < 0.15) {
     const randomDangerousItem = DANGEROUS_ITEMS[Math.floor(Math.random() * DANGEROUS_ITEMS.length)];
-    items.push({
+    const replacementIndex = Math.floor(Math.random() * items.length);
+    items[replacementIndex] = {
       id: uuidv4(),
       name: randomDangerousItem,
       isDangerous: true
-    });
+    };
   }
   
   return items;

@@ -50,23 +50,6 @@ export const useSimulation = () => {
   // رقم جواز السفر الذي يتم فحصه حالياً
   const [currentCheckingPassport, setCurrentCheckingPassport] = useState<string | undefined>(undefined);
 
-  // تهيئة المحاكاة
-  const initializeSimulation = useCallback(() => {
-    // توليد قائمة سوداء أولية
-    const initialBlacklist = generateInitialBlacklist();
-    // إضافة جوازات السفر إلى القائمة المتسلسلة
-    initialBlacklist.forEach(passport => {
-      blacklistLL.add(passport);
-    });
-    // تحديث حالة جوازات السفر المدرجة في القائمة السوداء
-    setBlacklistedPassports(initialBlacklist);
-    // إضافة سجلات بدء التشغيل
-    addLog("System initialized and ready", "info");
-    addLog("Welcome to Airport Baggage Security Simulator", "info");
-    addLog("Use control panel to load data or add passengers", "info");
-    addLog(`Initialized blacklist with ${initialBlacklist.length} entries`, "info");
-  }, [blacklistLL]);
-
   // دالة مساعدة لإضافة سجلات
   const addLog = useCallback((message: string, type: 'info' | 'warning' | 'error' | 'success') => {
     // إنشاء سجل جديد
@@ -88,6 +71,19 @@ export const useSimulation = () => {
       });
     }
   }, []);
+
+  // تهيئة المحاكاة
+  const initializeSimulation = useCallback(() => {
+    const initialBlacklist = generateInitialBlacklist();
+    initialBlacklist.forEach(passport => {
+      blacklistLL.add(passport);
+    });
+    setBlacklistedPassports(initialBlacklist);
+    addLog("System initialized and ready", "info");
+    addLog("Welcome to Airport Baggage Security Simulator", "info");
+    addLog("Use control panel to load data or add passengers", "info");
+    addLog(`Initialized blacklist with ${initialBlacklist.length} entries`, "info");
+  }, [addLog, blacklistLL]);
 
   // تحديث حالة المسافرين من الطابور
   const updatePassengersFromQueue = useCallback(() => {
