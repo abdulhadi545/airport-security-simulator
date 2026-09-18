@@ -1,11 +1,14 @@
 # Airport Security Simulator
 
 [![CI](https://github.com/abdulhadi545/airport-security-simulator/actions/workflows/ci.yml/badge.svg)](https://github.com/abdulhadi545/airport-security-simulator/actions/workflows/ci.yml)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-222?logo=github)](https://abdulhadi545.github.io/airport-security-simulator/)
 ![React](https://img.shields.io/badge/React-18-149eca)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 An interactive airport baggage-screening simulation that turns core data structures into a visible, real-time workflow. Passengers enter a FIFO queue, baggage items are inspected through a LIFO stack, and passport numbers are checked against a linked-list blacklist.
+
+**[Open the live simulator](https://abdulhadi545.github.io/airport-security-simulator/)**
 
 > Educational simulation only. It does not model or replace real airport security procedures.
 
