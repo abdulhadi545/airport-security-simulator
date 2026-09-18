@@ -1,4 +1,3 @@
-
 // Main application component that sets up routing and global providers
 // المكون الرئيسي للتطبيق الذي يعد التوجيه والموفرين العالميين
 
@@ -23,14 +22,14 @@ const App = () => (
       {/* Global toast notifications | إشعارات منبثقة عالمية */}
       <Toaster />
       <Sonner />
-      
+
       {/* Theme toggle button in top right | زر تبديل السمة في الأعلى يمين */}
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
-      
+
       {/* Application routing setup | إعداد توجيه التطبيق */}
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<Index />} />
           {/* Catch-all route for 404 errors | مسار شامل لأخطاء 404 */}
